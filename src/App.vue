@@ -1,9 +1,7 @@
 <template lang="pug">
 #app
   navigation-bar
-
-  .container
-    router-view
+  router-view
 </template>
 
 <script>
@@ -24,4 +22,8 @@ body
 .form-control,
 .card
   border-radius: 0
+
+.main-left,
+.main-right
+  transition: width .15s
 </style>

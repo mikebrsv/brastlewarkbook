@@ -42,6 +42,11 @@ export default new Vuex.Store({
     getGnomeData: state => {
       // return state.gnomeData
       return state.gnomeData.slice(0, 10)
+      // return state.gnomeData
+    },
+
+    getFriends: (state) => (friends) => {
+      return state.gnomeData.filter((friend) => friends.includes(friend.name))
     }
   },
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.main-left(:class="`${currentProfile ? 'col-4' : 'col-12'}`")
   .row.justify-content-center
     .main-left-search.pt-1.pb-5(:class="`${currentProfile ? 'col-12' : 'col-lg-10 col-xl-8'}`")
       input.form-control(type="text")
