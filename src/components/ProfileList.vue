@@ -3,7 +3,7 @@
   profile-list-item(
     v-for="gnomeProfile in gnomeData",
     :key="gnomeProfile.id",
-    :gnomeProfile="gnomeProfile"
+    :gnome-profile="gnomeProfile"
   )
 </template>
 

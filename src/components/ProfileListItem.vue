@@ -5,36 +5,39 @@ div(
   style="padding-top: 12px; padding-bottom: 12px"
 )
   .card
-    .card-body.d-flex
-      div
-        img.rounded-circle(
-          :src="gnomeProfile.thumbnail",
-          :alt="gnomeProfile.name",
-          :class="`${currentProfile ? 'smaller' : ''}`"
-        )
-      .ps-3.d-flex.flex-column.justify-content-between.flex-grow-1
-        div
-          h5.mb-0 {{ gnomeProfile.name }}
-          div {{ gnomeProfile.professions.join(', ') }}
-        .row(style="font-size: 14px")
-          .col-8
-            div Age: {{ gnomeProfile.age }}
-            div Height: {{ gnomeProfile.height }} Weight: {{ gnomeProfile.weight }}
-          .col-4.text-center
-            div Hair color:
-            div {{ gnomeProfile.hair_color }}
+    profile-info.card-body(
+      :profile="gnomeProfile",
+      :name-tag="nameTag",
+      :image-class="imageClass"
+    )
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 
+import ProfileInfo from "@/components/ProfileInfo.vue";
+
 export default {
+  components: {
+    ProfileInfo,
+  },
+
   props: {
     gnomeProfile: Object,
   },
 
+  data() {
+    return {
+      nameTag: 'h3'
+    }
+  },
+
   computed: {
     ...mapState(["currentProfile"]),
+
+    imageClass() {
+      return this.currentProfile ? "smaller" : "thumbnail";
+    },
   },
 
   methods: {
@@ -43,7 +46,9 @@ export default {
     async setCurrentProfileHandler(profile) {
       await this.setCurrentProfile(profile);
 
-      if (profile.id.toString() !== this.$route.params.id.toString())
+      let routeId = this.$route.params.id;
+
+      if (!routeId || profile.id.toString() !== routeId.toString())
         await this.$router.push(`/profile/${profile.id}`);
     },
   },
@@ -51,6 +56,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.card
+  cursor: pointer
+
 img
   object-fit: cover
   object-position: center

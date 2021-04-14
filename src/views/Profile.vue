@@ -1,14 +1,25 @@
 <template lang="pug">
-div
-  h1 {{ currentProfile && currentProfile.name }}
+profile-info(:profile="currentProfile", :name-tag="nameTag")
 </template>
 
 <script>
 import { mapState } from "vuex";
 
+import ProfileInfo from "@/components/ProfileInfo.vue";
+
 export default {
+  components: {
+    ProfileInfo,
+  },
+
   props: {
     profile: Object,
+  },
+
+  data() {
+    return {
+      nameTag: "h1",
+    };
   },
 
   computed: mapState(["currentProfile"]),
@@ -17,3 +28,6 @@ export default {
   // mounted() {}
 };
 </script>
+
+<style lang="sass" scoped>
+</style>

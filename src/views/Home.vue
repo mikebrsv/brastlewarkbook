@@ -1,7 +1,6 @@
 <template lang="pug">
-.row.flex-nowrap
-  .main-left(:class="`${currentProfile ? 'col-4' : 'col-12'}`")
-    side-bar
+.row.flex-nowrap  
+  side-bar.main-left(:class="`${currentProfile ? 'col-4' : 'col-12'}`")
 
   .main-right.col-8(v-if="currentProfile")
     router-view(name="profile")

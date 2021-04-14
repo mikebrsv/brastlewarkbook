@@ -4,7 +4,7 @@ div
     .main-left-search.pt-1.pb-5(:class="`${currentProfile ? 'col-12' : 'col-lg-10 col-xl-8'}`")
       input.form-control(type="text")
 
-  profile-list(:gnomeData="gnomeData")
+  profile-list(:gnome-data="gnomeData")
 </template>
 
 <script>
