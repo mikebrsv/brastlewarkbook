@@ -19,12 +19,6 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
           a.nav-link(href="#") Link 2
 </template>
 
-<script>
-export default {
-  name: "Navbar",
-};
-</script>
-
 <style lang="sass">
 .navbar
   padding-top: 4px

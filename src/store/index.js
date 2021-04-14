@@ -6,12 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    gnomeData: []
+    gnomeData: [],
+    currentProfile: null,
   },
 
   mutations: {
     SET_GNOME_DATA(state, data) {
       state.gnomeData = data
+    },
+
+    SET_CURRENT_PROFILE(state, profile) {
+      state.currentProfile = profile
     }
   },
 
@@ -26,6 +31,17 @@ export default new Vuex.Store({
           console.log(error)
         })
       // .finally(() => {})
+    },
+
+    setCurrentProfile(context, param) {
+      context.commit('SET_CURRENT_PROFILE', param)
+    }
+  },
+
+  getters: {
+    getGnomeData: state => {
+      // return state.gnomeData
+      return state.gnomeData.slice(0, 10)
     }
   },
 

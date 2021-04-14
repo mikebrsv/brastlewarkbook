@@ -1,24 +1,17 @@
 <template lang="pug">
 #app
-  Navbar
+  navigation-bar
+
   .container
-    .row.flex-nowrap.main-row
-      //- .col-md-3
-      .col-12
-        Sidebar
-      //- .col-md-9
-      .col-0
-        router-view
+    router-view
 </template>
 
 <script>
-import Sidebar from "@/components/Sidebar.vue";
-import Navbar from "@/components/Navbar.vue";
+import NavigationBar from "@/components/NavigationBar.vue";
 
 export default {
   components: {
-    Sidebar,
-    Navbar,
+    NavigationBar,
   },
 };
 </script>
@@ -28,10 +21,7 @@ body
   padding-top: 58px
   overflow-x: hidden
 
-.main-row
-  overflow: hidden
-
-.col-0
-  flex: 0 0 auto
-  width: 0
+.form-control,
+.card
+  border-radius: 0
 </style>

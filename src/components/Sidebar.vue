@@ -1,30 +1,40 @@
 <template lang="pug">
 div
   .row.justify-content-center
-    .col-lg-10.col-xl-8.pt-1.pb-5
-      input(type='text').form-control
+    .main-left-search.pt-1.pb-5(:class="`${currentProfile ? 'col-12' : 'col-lg-10 col-xl-8'}`")
+      input.form-control(type="text")
 
-  ProfileList(:gnomeData="gnomeData")
-    
+  profile-list(:gnomeData="gnomeData")
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from "vuex";
 import ProfileList from "@/components/ProfileList.vue";
 
 export default {
   components: {
-    ProfileList
+    ProfileList,
   },
 
   computed: {
-    gnomeData() {
-      // console.log(this.$store.state.gnomeData)
-      return this.$store.state.gnomeData;
-    },
+    ...mapGetters({
+      gnomeData: "getGnomeData",
+    }),
+
+    ...mapState(["currentProfile"]),
   },
 
   created() {
-    this.$store.dispatch("getGnomeData");
+    this.getGnomeData();
   },
-}
+
+  methods: {
+    ...mapActions(["getGnomeData"]),
+  },
+};
 </script>
+
+<style lang="sass" scoped>
+.main-left-search
+  transition: width .15s
+</style>

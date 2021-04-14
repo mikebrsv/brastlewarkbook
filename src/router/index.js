@@ -8,13 +8,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+
+    children: [
+      {
+        path: '/profile/:id',
+        name: 'Profile',
+        components: {
+          profile: () =>
+            import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
+        }
+      }
+    ]
   },
+
   {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
-  },
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () =>
+      import(/* webpackChunkName: "not-found" */ "../views/NotFound.vue"),
+  }
 ]
 
 const router = new VueRouter({

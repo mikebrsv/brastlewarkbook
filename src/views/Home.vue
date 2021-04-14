@@ -1,16 +1,27 @@
-<template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+.row.flex-nowrap
+  .main-left(:class="`${currentProfile ? 'col-4' : 'col-12'}`")
+    side-bar
+
+  .main-right.col-8(v-if="currentProfile")
+    router-view(name="profile")
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapState } from "vuex";
+import SideBar from "@/components/SideBar.vue";
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
-  }
-}
+    SideBar,
+  },
+
+  computed: mapState(["currentProfile"]),
+};
 </script>
+
+<style lang="sass" scoped>
+.main-left,
+.main-right
+  transition: width .15s
+</style>

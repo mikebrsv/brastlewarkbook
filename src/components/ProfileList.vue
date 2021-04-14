@@ -1,20 +1,22 @@
 <template lang="pug">
 .row
-  ProfileItem(v-for="gnomeProfile in gnomeData", :key="gnomeProfile.id", :gnomeProfile="gnomeProfile")
+  profile-list-item(
+    v-for="gnomeProfile in gnomeData",
+    :key="gnomeProfile.id",
+    :gnomeProfile="gnomeProfile"
+  )
 </template>
 
 <script>
-import ProfileItem from "@/components/ProfileItem.vue";
+import ProfileListItem from "@/components/ProfileListItem.vue";
 
 export default {
-  name: "ProfileList",
+  components: {
+    ProfileListItem,
+  },
 
   props: {
     gnomeData: Array,
-  },
-
-  components: {
-    ProfileItem,
   },
 };
 </script>
