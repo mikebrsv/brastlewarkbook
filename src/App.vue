@@ -1,7 +1,7 @@
 <template lang="pug">
 #app
   navigation-bar
-  div(v-if="loading") Loading...
+  loading-spinner(v-if="loading") Loading...
   router-view(v-else)
 </template>
 
@@ -9,10 +9,12 @@
 import { mapActions } from "vuex";
 
 import NavigationBar from "@/components/NavigationBar.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 export default {
   components: {
     NavigationBar,
+    LoadingSpinner
   },
 
   data() {
@@ -40,6 +42,7 @@ body
 
 .form-control,
 .card,
+.btn,
 .multiselect__tags,
 .multiselect__tag,
 .multiselect__content-wrapper,
