@@ -35,7 +35,7 @@
                     @input="validateAgeInput($event, i)"
                   )
 
-  .profile-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
+  .gnome-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
     gnome-list(
       :gnome-data="getGnomeData",
       :class="`${currentProfile ? 'mx-0' : ''}`"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import GnomeList from "@/components/GnomeList.vue";
 import Multiselect from "vue-multiselect";
 
@@ -64,13 +64,7 @@ export default {
     ...mapGetters(["getGnomeData", "getAgeRange"]),
   },
 
-  created() {
-    this.setInitialData();
-  },
-
   methods: {
-    ...mapActions(["setInitialData"]),
-
     copeAgeRange(i) {
       if (parseInt(this.getAgeRange[0]) > parseInt(this.getAgeRange[1])) {
         this.$store.commit("COPE_AGE_RANGE", {
@@ -124,7 +118,7 @@ export default {
     -webkit-appearance: none
     margin-top: -7px
 
-.profile-list-wrapper
+.gnome-list-wrapper
   margin-top: -6px
 
   &.scrollable

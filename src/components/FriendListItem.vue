@@ -1,20 +1,26 @@
 <template lang="pug">
-.friends-item
-  router-link.friend-link.d-flex.flex-column.align-items-center(
-    :to="`/profile/${friend.id}`"
-  )
-    div
-      img.friend-image.rounded-circle(
-        :src="friend.thumbnail",
-        :alt="friend.name"
-      )
-    .friend-name.text-center {{ friend.name }}
+.friends-item.d-flex.flex-column.align-items-center(
+  @click="friendsItemClickHandler(friend.id)"
+)
+  img.friend-image.rounded-circle(:src="friend.thumbnail", :alt="friend.name")
+  .friend-name.text-center {{ friend.name }}
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     friend: Object,
+  },
+
+  methods: {
+    ...mapActions(["setCurrentProfileById"]),
+
+    friendsItemClickHandler(id) {
+      this.$router.push(`/profile/${id}`);
+      this.setCurrentProfileById(id);
+    },
   },
 };
 </script>
@@ -24,12 +30,9 @@ export default {
   padding-left: 10px
   padding-right: 10px
   width: 110px
-
-.friend-link
-  text-decoration: none
-  color: #212529
   font-size: 14px
   line-height: 18px
+  cursor: pointer
 
 .friend-image
   object-fit: cover

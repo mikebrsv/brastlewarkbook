@@ -39,15 +39,15 @@ export default {
   },
 
   methods: {
-    ...mapActions(["setCurrentProfile"]),
+    ...mapActions(["setCurrentProfileById"]),
 
-    async setCurrentProfileHandler(profile) {
-      await this.setCurrentProfile(profile);
+    setCurrentProfileHandler(profile) {
+      this.setCurrentProfileById(profile.id);
 
       let routeId = this.$route.params.id;
 
       if (!routeId || profile.id.toString() !== routeId.toString())
-        await this.$router.push(`/profile/${profile.id}`);
+        this.$router.push(`/profile/${profile.id}`);
     },
   },
 };

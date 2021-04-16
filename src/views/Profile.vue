@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 import ProfileInfo from "@/components/ProfileInfo.vue";
 import FriendList from "@/components/FriendList.vue";
@@ -29,7 +29,18 @@ export default {
     };
   },
 
-  computed: mapState(["currentProfile"]),
+  computed: {
+    ...mapState(["currentProfile"]),
+    ...mapGetters(["getProfileById"])
+  },
+
+  mounted() {
+    this.setCurrentProfileById(parseInt(this.$route.params.id))
+  },
+
+  methods: {
+    ...mapActions(["setCurrentProfileById"]),
+  }
 };
 </script>
 

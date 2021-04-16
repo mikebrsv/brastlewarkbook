@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from "axios";
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -19,7 +19,14 @@ export default new Vuex.Store({
       state.gnomeData = data
     },
 
-    SET_CURRENT_PROFILE(state, profile) {
+    // SET_CURRENT_PROFILE(state, profile) {
+    //   state.currentProfile = profile
+    // },
+
+    SET_CURRENT_PROFILE_BY_ID(state, id) {
+      // console.log(id)
+      let profile = state.gnomeData.find(profile => profile.id === id)
+      // console.log(profile)
       state.currentProfile = profile
     },
 
@@ -49,8 +56,8 @@ export default new Vuex.Store({
   },
 
   actions: {
-    setInitialData({ commit }) {
-      axios.get('https://bitbucket.org/fenix-group-international/frontend-test/raw/80d1664d5db3a516537a3bbbb4f3fca968d18b2e/data.json')
+    async setInitialData({ commit }) {
+      await axios.get('https://bitbucket.org/fenix-group-international/frontend-test/raw/80d1664d5db3a516537a3bbbb4f3fca968d18b2e/data.json')
         .then((response) => {
           let data = response.data.Brastlewark
           commit('SET_GNOME_DATA', data)
@@ -72,19 +79,28 @@ export default new Vuex.Store({
       // .finally(() => {})
     },
 
-    setCurrentProfile(context, param) {
-      context.commit('SET_CURRENT_PROFILE', param)
+    // setCurrentProfile(context, param) {
+    //   context.commit('SET_CURRENT_PROFILE', param)
+    // },
+
+    setCurrentProfileById(context, id) {
+      context.commit('SET_CURRENT_PROFILE_BY_ID', id)
     }
   },
 
   getters: {
     getGnomeData: state => {
       return state.gnomeData.slice(0, 12)
+      // return state.gnomeData
     },
 
     getFriends: (state) => (friends) => {
       return state.gnomeData.filter((friend) => friends.includes(friend.name))
     },
+
+    // getProfileById: (state) => (id) => {
+    //   return state.gnomeData.find(profile => profile.id === id)
+    // },
 
     getAgeRange: state => {
       return state.ageRange

@@ -1,16 +1,34 @@
 <template lang="pug">
 #app
   navigation-bar
-  router-view
+  div(v-if="loading") Loading...
+  router-view(v-else)
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import NavigationBar from "@/components/NavigationBar.vue";
 
 export default {
   components: {
     NavigationBar,
   },
+
+  data() {
+    return {
+      loading: true
+    }
+  },
+
+  async created() {
+    await this.setInitialData();
+    this.loading = false
+  },
+
+  methods: {
+    ...mapActions(["setInitialData"]),
+  }
 };
 </script>
 
