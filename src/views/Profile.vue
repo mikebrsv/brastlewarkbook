@@ -1,7 +1,7 @@
 <template lang="pug">
 .main-right.col-8(v-if="currentProfile")
   profile-info(:profile="currentProfile", :name-tag="nameTag")
-  profile-friends(
+  friend-list(
     :name="currentProfile.name",
     :friends="currentProfile.friends"
   )
@@ -11,12 +11,12 @@
 import { mapState } from "vuex";
 
 import ProfileInfo from "@/components/ProfileInfo.vue";
-import ProfileFriends from "@/components/ProfileFriends.vue";
+import FriendList from "@/components/FriendList.vue";
 
 export default {
   components: {
     ProfileInfo,
-    ProfileFriends,
+    FriendList,
   },
 
   props: {

@@ -36,7 +36,7 @@
                   )
 
   .profile-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
-    profile-list(
+    gnome-list(
       :gnome-data="getGnomeData",
       :class="`${currentProfile ? 'mx-0' : ''}`"
     )
@@ -44,12 +44,12 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import ProfileList from "@/components/ProfileList.vue";
+import GnomeList from "@/components/GnomeList.vue";
 import Multiselect from "vue-multiselect";
 
 export default {
   components: {
-    ProfileList,
+    GnomeList,
     Multiselect,
   },
 

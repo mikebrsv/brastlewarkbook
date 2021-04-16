@@ -4,7 +4,7 @@
     h3.friends-list-title {{ name }}'s Friends
 
     .friends-list.d-flex.flex-wrap
-      profile-friends-item(
+      friend-list-item(
         v-for="friend in getFriends(friends)",
         :friend="friend",
         :key="friend.id"
@@ -18,11 +18,11 @@
 <script>
 import { mapGetters } from "vuex";
 
-import ProfileFriendsItem from "./ProfileFriendsItem";
+import FriendListItem from "./FriendListItem";
 
 export default {
   components: {
-    ProfileFriendsItem,
+    FriendListItem,
   },
 
   props: {
