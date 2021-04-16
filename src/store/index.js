@@ -34,6 +34,10 @@ export default new Vuex.Store({
       state.currentProfile = profile
     },
 
+    REMOVE_CURRENT_PROFILE(state) {
+      state.currentProfile = null
+    },
+
     SET_AGE_RANGE(state, data) {
       state.ageRange = data
     },
@@ -70,6 +74,10 @@ export default new Vuex.Store({
 
     setCurrentProfileById({ commit }, id) {
       commit('SET_CURRENT_PROFILE_BY_ID', id)
+    },
+
+    removeCurrentProfile({ commit }) {
+      commit('REMOVE_CURRENT_PROFILE')
     },
 
     loadMore({ commit }) {

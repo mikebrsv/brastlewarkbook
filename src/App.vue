@@ -14,23 +14,23 @@ import LoadingSpinner from "@/components/LoadingSpinner.vue";
 export default {
   components: {
     NavigationBar,
-    LoadingSpinner
+    LoadingSpinner,
   },
 
   data() {
     return {
-      loading: true
-    }
+      loading: true,
+    };
   },
 
   async created() {
     await this.setInitialData();
-    this.loading = false
+    this.loading = false;
   },
 
   methods: {
     ...mapActions(["setInitialData"]),
-  }
+  },
 };
 </script>
 
@@ -48,6 +48,9 @@ body
 .multiselect__content-wrapper,
 .multiselect__tag-icon
   border-radius: 0
+
+.badge
+  font-size: 11px
 
 .multiselect
   min-height: 0

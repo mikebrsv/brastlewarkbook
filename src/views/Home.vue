@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-  .row.flex-nowrap
+  .row.flex-md-nowrap
     side-bar
     router-view(name="profile")
 </template>

@@ -1,22 +1,16 @@
 <template lang="pug">
-.main-left(:class="`${currentProfile ? 'col-4' : 'col-12'}`")
+.main-left(:class="`${currentProfile ? 'col-lg-4 col-md-5' : 'col-12'}`")
   .row.justify-content-center.mb-4
-    .main-left-search(
+    .main-filters(
       :class="`${currentProfile ? 'col-12' : 'col-lg-10 col-xl-8'}`"
     )
       .card
         .card-body
-          .mb-3
-            input.form-control(type="text", placeholder="Search by name...")
           .row
-            .col-6
-              multiselect(
-                v-model="selected",
-                :multiple="true",
-                :options="professions",
-                placeholder="Profession"
-              )
-            .col-6
+            .main-filters-name(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
+              input.form-control(type="text", placeholder="Search by name...")
+
+            .main-filters-age-range(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
               label.form-label Age
               .age-range-wrapper.position-relative
                 input.age-range.form-range.position-absolute(
@@ -27,6 +21,16 @@
                   v-model="getAgeRange[i]",
                   @input="copeAgeRange(i)"
                 )
+
+            .main-filters-professions(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
+              multiselect(
+                v-model="selected",
+                :multiple="true",
+                :options="professions",
+                placeholder="Profession"
+              )
+
+            .main-filters-age-inputs(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
               .row.gx-2
                 .col-6(v-for="(age, i) in getAgeRange")
                   input.form-control.text-center(
@@ -85,8 +89,22 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.main-left-search
+.main-filters
   transition: width .15s
+
+.main-filters-name.col-12
+  order: 1
+  margin-bottom: 12px
+
+.main-filters-age-range.col-12
+  order: 3
+
+.main-filters-professions.col-12
+  order: 2
+  margin-bottom: 12px
+
+.main-filters-age-inputs.col-12
+  order: 4
 
 .age-range-wrapper
   margin-bottom: 36px
@@ -137,4 +155,19 @@ export default {
 
       &:hover
         background-color: #555
+
+@media (max-width: 767.98px)
+  .main-filters-name.col-md-6
+    order: 1
+    margin-bottom: 12px
+
+  .main-filters-age-range.col-md-6
+    order: 3
+
+  .main-filters-professions.col-md-6
+    order: 2
+    margin-bottom: 12px
+
+  .main-filters-age-inputs.col-md-6
+    order: 4
 </style>

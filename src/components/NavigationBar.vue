@@ -1,23 +1,27 @@
 <template lang="pug">
 nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
-  .container
+  .container.position-relative
     a.navbar-brand(href="/") Brastlewarkbook
-    //- button.navbar-toggler(
-    //-   type="button",
-    //-   data-bs-toggle="collapse",
-    //-   data-bs-target="#navbarSupportedContent",
-    //-   aria-controls="navbarSupportedContent",
-    //-   aria-expanded="false",
-    //-   aria-label="Toggle navigation"
-    //- )
-    //-   span.navbar-toggler-icon
-    //- #navbarSupportedContent.collapse.navbar-collapse
-    //-   ul.navbar-nav.me-auto.mb-2.mb-lg-0
-    //-     li.nav-item
-    //-       a.nav-link(href="#") Link 1
-    //-     li.nav-item
-    //-       a.nav-link(href="#") Link 2
+    .close(v-if="currentProfile", @click="removeCurrentProfileHandler") 
 </template>
+
+<script>
+import { mapActions, mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState(["currentProfile"]),
+  },
+
+  methods: {
+    ...mapActions(["removeCurrentProfile"]),
+
+    removeCurrentProfileHandler() {
+      this.removeCurrentProfile();
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style lang="sass">
 .navbar
@@ -28,4 +32,32 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
   font-size: 16px
   padding-top: 8px
   padding-bottom: 8px
+
+.close
+  position: absolute
+  right: 12px
+  top: 50%
+  transform: translateY(-50%)
+  width: 32px
+  height: 32px
+  opacity: 1
+  transition: opacity .15s
+  cursor: pointer
+
+  &:hover
+    opacity: .6
+
+  &:before, &:after
+    position: absolute
+    left: 15px
+    content: ' '
+    height: 33px
+    width: 4px
+    background-color: #333
+
+  &:before
+    transform: rotate(45deg)
+
+  &:after
+    transform: rotate(-45deg)
 </style>

@@ -1,10 +1,7 @@
 <template lang="pug">
-.main-right.col-8(v-if="currentProfile")
-  profile-info(:profile="currentProfile", :name-tag="nameTag")
-  friend-list(
-    :name="currentProfile.name",
-    :friends="currentProfile.friends"
-  )
+.main-right.col-lg-8.col-md-7(v-if="currentProfile")
+  profile-info(:profile="currentProfile", :mode="0")
+  friend-list(:name="currentProfile.name", :friends="currentProfile.friends")
 </template>
 
 <script>
@@ -23,24 +20,18 @@ export default {
     profile: Object,
   },
 
-  data() {
-    return {
-      nameTag: "h1",
-    };
-  },
-
   computed: {
     ...mapState(["currentProfile"]),
-    ...mapGetters(["getProfileById"])
+    ...mapGetters(["getProfileById"]),
   },
 
   mounted() {
-    this.setCurrentProfileById(parseInt(this.$route.params.id))
+    this.setCurrentProfileById(parseInt(this.$route.params.id));
   },
 
   methods: {
     ...mapActions(["setCurrentProfileById"]),
-  }
+  },
 };
 </script>
 

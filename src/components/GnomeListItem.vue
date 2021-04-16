@@ -3,11 +3,7 @@ div(
   @click="setCurrentProfileHandler(gnomeProfile)",
   :class="`${currentProfile ? 'col-12' : 'col-lg-6'}`"
 )
-  profile-info(
-    :profile="gnomeProfile",
-    :name-tag="nameTag",
-    :image-class="imageClass"
-  )
+  profile-info(:profile="gnomeProfile", :mode="1")
 </template>
 
 <script>
@@ -24,18 +20,8 @@ export default {
     gnomeProfile: Object,
   },
 
-  data() {
-    return {
-      nameTag: "h3",
-    };
-  },
-
   computed: {
     ...mapState(["currentProfile"]),
-
-    imageClass() {
-      return this.currentProfile ? "smaller" : "thumbnail";
-    },
   },
 
   methods: {

@@ -30,4 +30,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.row
+  --bs-gutter-x: 12px
 </style>
