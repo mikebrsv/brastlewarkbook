@@ -1,23 +1,24 @@
 <template lang="pug">
-.d-flex
-  div
-    img.profile-image.rounded-circle(
-      :src="profile.thumbnail",
-      :alt="profile.name",
-      :class="imageClass"
-    )
-
-  .ps-3.d-flex.flex-column.justify-content-between.flex-grow-1
+.card
+  .card-body.d-flex
     div
-      component(:is="nameTag") {{ profile.name }}
-      div {{ profile.professions.join(', ') }}
-    .row(style="font-size: 14px")
-      .col-8
-        div Age: {{ profile.age }}
-        div Height: {{ profile.height }} Weight: {{ profile.weight }}
-      .col-4.text-center
-        div Hair color:
-        div {{ profile.hair_color }}
+      img.profile-image.rounded-circle(
+        :src="profile.thumbnail",
+        :alt="profile.name",
+        :class="imageClass"
+      )
+
+    .ps-3.d-flex.flex-column.justify-content-between.flex-grow-1
+      div
+        component(:is="nameTag") {{ profile.name }}
+        div {{ profile.professions.join(', ') }}
+      .row(style="font-size: 14px")
+        .col-8
+          div Age: {{ profile.age }}
+          div Height: {{ profile.height }} Weight: {{ profile.weight }}
+        .col-4.text-center
+          div Hair color:
+          div {{ profile.hair_color }}
 </template>
 
 <script>

@@ -1,15 +1,13 @@
 <template lang="pug">
 div(
   @click="setCurrentProfileHandler(gnomeProfile)",
-  :class="`${currentProfile ? 'col-12' : 'col-lg-6'}`",
-  style="padding-top: 12px; padding-bottom: 12px"
+  :class="`${currentProfile ? 'col-12' : 'col-lg-6'}`"
 )
-  .card
-    profile-info.card-body(
-      :profile="gnomeProfile",
-      :name-tag="nameTag",
-      :image-class="imageClass"
-    )
+  profile-info(
+    :profile="gnomeProfile",
+    :name-tag="nameTag",
+    :image-class="imageClass"
+  )
 </template>
 
 <script>
@@ -28,8 +26,8 @@ export default {
 
   data() {
     return {
-      nameTag: 'h3'
-    }
+      nameTag: "h3",
+    };
   },
 
   computed: {
@@ -58,6 +56,21 @@ export default {
 <style lang="sass" scoped>
 .card
   cursor: pointer
+
+.col-lg-6,
+.col-12
+  padding-top: 6px
+  padding-bottom: 6px
+
+.col-12
+  padding-left: 0
+  padding-right: 0
+
+  &:nth-child(1)
+    padding-top: 0
+
+  &:last-child
+    padding-bottom: 0
 
 img
   object-fit: cover

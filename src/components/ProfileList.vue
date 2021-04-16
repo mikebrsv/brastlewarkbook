@@ -22,7 +22,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.row
-  margin-top: -12px
-  margin-bottom: -12px
 </style>
