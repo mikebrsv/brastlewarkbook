@@ -36,9 +36,12 @@ export default {
 
 <style lang="sass">
 body
-  padding-top: 58px
+  padding-top: 60px
   background-color: #edeef0
   overflow-x: hidden
+
+.container-fluid
+  max-width: 3000px
 
 .form-control,
 .card,
@@ -103,6 +106,7 @@ body
   padding-bottom: 0
 
 .main-left,
+.main-center,
 .main-right
   transition: width .15s
 

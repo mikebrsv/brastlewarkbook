@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-right.col-lg-8.col-md-7.order-1.order-md-2(v-if="currentProfile")
+.main-center.col-lg-6.col-md-7.order-1.order-md-2(v-if="currentProfile")
   profile-info(:profile="currentProfile", :mode="0")
   friend-list(:name="currentProfile.name", :friends="currentProfile.friends")
 </template>

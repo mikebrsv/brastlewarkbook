@@ -14,26 +14,42 @@
       .ps-3.d-flex.flex-column.justify-content-between.flex-grow-1
         div
           h1(v-if="mode === 0") {{ profile.name }}
-          h4(v-if="mode === 1 && !currentProfile").mb-0 {{ profile.name }}
-          .mb-3 {{ profile.professions.join(', ') }}
+          h4.mb-0(v-if="mode === 1 && !currentProfile") {{ profile.name }}
+          .mb-3(v-if="mode === 1") {{ profile.professions.join(', ') }}
+          .mb-3(v-if="mode === 0")
+            template(v-for="(profession, index) in profile.professions")
+              span.profession(
+                title="Add to filter"
+                :key="index",
+                @click="pushProfessionFilter(profession)"
+              ) {{ profession.trim() }}
+              | {{ commaSeparate(profile.professions, index) }}
         .additional-info.row
           .col-8
             div 
-              span.additional-info-title.d-inline-block Age: 
+              span.additional-info-title.d-inline-block Age:
               span.additional-info-badge.badge.bg-success {{ profile.age }}
             div(v-if="showAdditionalInfo") 
-              span.additional-info-title.d-inline-block Height: 
-              span.additional-info-badge.show-help.badge.bg-secondary(:title="profile.height") {{ profile.height.toFixed(2) }}
+              span.additional-info-title.d-inline-block Height:
+              span.additional-info-badge.show-help.badge.bg-secondary(
+                :title="profile.height"
+              ) {{ profile.height.toFixed(2) }}
             div(v-if="showAdditionalInfo") 
-              span.additional-info-title.d-inline-block Weight: 
-              span.additional-info-badge.show-help.badge.bg-secondary(:title="profile.weight") {{ profile.weight.toFixed(2) }}
-          .col-4.d-flex.flex-column.align-items-center.justify-content-end(v-if="showAdditionalInfo")
+              span.additional-info-title.d-inline-block Weight:
+              span.additional-info-badge.show-help.badge.bg-secondary(
+                :title="profile.weight"
+              ) {{ profile.weight.toFixed(2) }}
+          .col-4.d-flex.flex-column.align-items-center.justify-content-end(
+            v-if="showAdditionalInfo"
+          )
             div Hair color:
-            .badge.d-block.w-100(:style="{backgroundColor: profile.hair_color.toLowerCase()}") {{ profile.hair_color }}
+            .badge.d-block.w-100(
+              :style="{ backgroundColor: profile.hair_color.toLowerCase() }"
+            ) {{ profile.hair_color }}
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   props: {
@@ -50,11 +66,26 @@ export default {
         : false;
     },
   },
+
+  methods: {
+    ...mapActions(["pushProfessionFilter"]),
+
+    commaSeparate(arr, index) {
+      if (index !== arr.length - 1) {
+        return ", ";
+      } else {
+        return "";
+      }
+    },
+
+    // addProfessionToFilter(profession) {
+
+    // }
+  },
 };
 </script>
 
 <style lang="sass" scoped>
-
 .additional-info-title
   width: 55px
 
@@ -76,8 +107,15 @@ export default {
     height: 100px
     width: 100px
 
+.profession
+  cursor: pointer
+
+  &:hover
+    color: #0d6efd
+
 .additional-info
   font-size: 14px
+  transition: color .15s
 
 .show-help
   cursor: help

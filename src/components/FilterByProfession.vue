@@ -1,35 +1,33 @@
 <template lang="pug">
 .main-filters-professions
   multiselect(
-    v-model="selected",
+    v-model="professionFilter",
     :multiple="true",
     :options="professions",
-    placeholder="Profession",
-    @input="updateProfessionFilter"
+    placeholder="Profession"
   )
 </template>
 
 <script>
 import Multiselect from "vue-multiselect";
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: {
     Multiselect,
   },
 
-  data() {
-    return {
-      selected: null,
-    };
-  },
-
   computed: {
-    ...mapState(["professions", "professionFilter"]),
-  },
+    ...mapState(["professions"]),
 
-  methods: {
-    ...mapActions(["updateProfessionFilter"]),
+    professionFilter: {
+      get() {
+        return this.$store.state.professionFilter;
+      },
+      set(value) {
+        this.$store.commit("UPDATE_PROFESSION_FILTER", value);
+      },
+    },
   },
 };
 </script>

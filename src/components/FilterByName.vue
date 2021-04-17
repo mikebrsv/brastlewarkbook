@@ -25,7 +25,7 @@ export default {
 <style lang="sass" scoped>
 .main-filters-name.col-12
   order: 1
-  margin-bottom: 12px
+  // margin-bottom: 12px
 
 @media (max-width: 767.98px)
   .main-filters-name.col-md-6

@@ -31,6 +31,10 @@ const UPDATE_PROFESSION_FILTER = (state, data) => {
   state.professionFilter = data
 }
 
+const PUSH_PROFESSION_FILTER = (state, data) => {
+  state.professionFilter.push(data)
+}
+
 const UPDATE_SORT = (state, data) => {
   state.sort = data
 }
@@ -55,6 +59,7 @@ export default {
   REMOVE_CURRENT_PROFILE,
   UPDATE_NAME_FILTER,
   UPDATE_PROFESSION_FILTER,
+  PUSH_PROFESSION_FILTER,
   UPDATE_SORT,
   SET_AGE_FILTER,
   COPE_AGE_FILTER,

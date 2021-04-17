@@ -37,8 +37,8 @@ const copeAgeFilter = ({ commit, state }, i) => {
   }
 }
 
-const updateProfessionFilter = ({ commit }, data) => {
-  commit('UPDATE_PROFESSION_FILTER', data)
+const pushProfessionFilter = ({ commit, state }, data) => {
+  if(!state.professionFilter.includes(data)) commit('PUSH_PROFESSION_FILTER', data)
 }
 
 const loadMore = ({ commit }) => {
@@ -50,6 +50,6 @@ export default {
   setCurrentProfileById,
   removeCurrentProfile,
   copeAgeFilter,
-  updateProfessionFilter,
+  pushProfessionFilter,
   loadMore
 }

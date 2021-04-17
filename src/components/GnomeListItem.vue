@@ -49,8 +49,8 @@ export default {
   padding-bottom: 6px
 
 .col-12
-  padding-left: 0
-  padding-right: 0
+  // padding-left: 0
+  // padding-right: 0
 
   &:nth-child(1)
     padding-top: 0

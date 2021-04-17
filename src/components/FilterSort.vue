@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-filters-sort.col-12.d-flex.justify-content-center.flex-column.flex-md-row
+.main-filters-sort.col-12.d-flex.justify-content-center.flex-column(:class="`${currentProfile ? '' : 'flex-md-row'}`")
   .fw-bolder Sort:
   .form-check(v-for="(option, index) in sortOptions")
     input.form-check-input(
@@ -17,7 +17,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["sortOptions"]),
+    ...mapState(["sortOptions", "currentProfile"]),
 
     sort: {
       get() {

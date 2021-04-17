@@ -4,7 +4,7 @@
     .card
       .card-body
         .row
-          filter-by-name(:class="filterClass")
+          filter-by-name(v-if="!currentProfile" :class="filterClass")
           filter-by-age-range(:class="filterClass")
           filter-by-profession(:class="filterClass")
           filter-by-age-inputs.main-filters-age-inputs(:class="filterClass")

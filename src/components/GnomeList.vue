@@ -1,5 +1,5 @@
 <template lang="pug">
-.row.gnome-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
+.gnome-list-wrapper.row(:class="`${currentProfile ? 'scrollable' : ''}`")
   gnome-list-item(
     v-for="gnomeProfile in getGnomeDataFilteredSliced",
     :key="gnomeProfile.id",
@@ -41,9 +41,11 @@ export default {
   margin-top: -6px
 
   &.scrollable
-    height: 100vh
+    height: calc(100vh - 144px)
     overflow-y: auto
     margin-top: 0px
+    margin-bottom: 0px
+    --bs-gutter-x: 0
 
     &::-webkit-scrollbar
       width: 10px
