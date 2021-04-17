@@ -43,6 +43,7 @@ body
 .form-control,
 .card,
 .btn,
+.form-select,
 .multiselect__tags,
 .multiselect__tag,
 .multiselect__content-wrapper,

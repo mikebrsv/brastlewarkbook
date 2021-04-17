@@ -8,6 +8,9 @@
           filter-by-age-range(:class="filterClass")
           filter-by-profession(:class="filterClass")
           filter-by-age-inputs.main-filters-age-inputs(:class="filterClass")
+          filter-sort
+      .card-footer
+        .row
           filter-counter
 </template>
 
@@ -18,6 +21,7 @@ import FilterByName from "@/components/FilterByName.vue";
 import FilterByAgeRange from "@/components/FilterByAgeRange.vue";
 import FilterByProfession from "@/components/FilterByProfession.vue";
 import FilterByAgeInputs from "@/components/FilterByAgeInputs.vue";
+import FilterSort from "@/components/FilterSort.vue";
 import FilterCounter from "@/components/FilterCounter.vue";
 
 export default {
@@ -26,6 +30,7 @@ export default {
     FilterByAgeRange,
     FilterByProfession,
     FilterByAgeInputs,
+    FilterSort,
     FilterCounter,
   },
 

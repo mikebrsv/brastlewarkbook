@@ -15,9 +15,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass" scoped>
-.main-filters-counter
-  order: 5
-  margin-top: 12px
-</style>
