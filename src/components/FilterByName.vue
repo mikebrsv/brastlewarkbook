@@ -15,7 +15,7 @@ export default {
         return this.$store.state.liveSearch;
       },
       set(value) {
-        this.$store.commit("UPDATE_LIVE_SEARCH", value);
+        this.$store.commit("UPDATE_NAME_FILTER", value);
       },
     },
   },

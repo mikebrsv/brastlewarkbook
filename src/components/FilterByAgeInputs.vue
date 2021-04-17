@@ -1,10 +1,10 @@
 <template lang="pug">
 .main-filters-age-inputs
   .row.gx-2
-    .col-6(v-for="(age, i) in ageRange")
+    .col-6(v-for="(age, i) in ageFilter")
       input.form-control.text-center(
         type="text",
-        v-model="ageRange[i]",
+        v-model="ageFilter[i]",
         @input="validateAgeInput($event, i)"
       )
 </template>
@@ -13,15 +13,15 @@
 import { mapActions, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["ageRange"]),
+    ...mapState(["ageFilter"]),
   },
 
   methods: {
-    ...mapActions(["copeAgeRange"]),
+    ...mapActions(["copeAgeFilter"]),
 
     validateAgeInput(e, i) {
       let char = String.fromCharCode(e.keyCode);
-      this.copeAgeRange(i);
+      this.copeAgeFilter(i);
       if (/^[0-9]+$/.test(char)) return true;
       else e.preventDefault();
     },

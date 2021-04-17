@@ -12,8 +12,9 @@ export default new Vuex.Store({
 
     currentProfile: null,
 
-    liveSearch: '',
-    ageRange: [],
+    nameFilter: '',
+    ageFilter: [],
+    professionFilter: [],
 
     gnomesToShow: 16,
   },
@@ -40,20 +41,20 @@ export default new Vuex.Store({
       state.currentProfile = null
     },
 
-    SET_AGE_RANGE(state, data) {
-      state.ageRange = data
+    SET_AGE_FILTER(state, data) {
+      state.ageFilter = data
     },
 
-    COPE_AGE_RANGE(state, { i, payload }) {
-      state.ageRange[i] = payload      
+    COPE_AGE_FILTER(state, { i, payload }) {
+      state.ageFilter[i] = payload      
     },
 
     LOAD_MORE(state) {
       state.gnomesToShow += 16
     },
 
-    UPDATE_LIVE_SEARCH(state, data) {
-      state.liveSearch = data
+    UPDATE_NAME_FILTER(state, data) {
+      state.nameFilter = data
     }
   },
 
@@ -69,7 +70,7 @@ export default new Vuex.Store({
         let min = Math.min.apply(null, ages)
         let max = Math.max.apply(null, ages)
         commit('SET_AGE_SPECTRUM', [min, max])
-        commit('SET_AGE_RANGE', [min, max])
+        commit('SET_AGE_FILTER', [min, max])
 
         let professions = [...new Set([].concat.apply([], data.map(item => item.professions)))]
         commit('SET_PROFESSIONS', professions)
@@ -86,21 +87,13 @@ export default new Vuex.Store({
       commit('REMOVE_CURRENT_PROFILE')
     },
 
-    copeAgeRange({commit, state},i) {
-      if(parseInt(state.ageRange[0]) > parseInt(state.ageRange[1])) {
-        // state.ageRange[i] = payload
-        commit("COPE_AGE_RANGE", {
+    copeAgeFilter({commit, state},i) {
+      if(parseInt(state.ageFilter[0]) > parseInt(state.ageFilter[1])) {
+        commit("COPE_AGE_FILTER", {
           i: i,
-          payload: i === 0 ? state.ageRange[1] : state.ageRange[0],
+          payload: i === 0 ? state.ageFilter[1] : state.ageFilter[0],
         });
       }
-
-      // if (parseInt(this.getAgeRange[0]) > parseInt(this.getAgeRange[1])) {
-      //   commit("COPE_AGE_RANGE", {
-      //     i: i,
-      //     payload: i === 0 ? this.getAgeRange[1] : this.getAgeRange[0],
-      //   });
-      // }
     },
 
     loadMore({ commit }) {
@@ -120,7 +113,7 @@ export default new Vuex.Store({
     getGnomeDataFilterByName: (state, getters) => {
       let gnomeDataFilterByName = getters.getGnomeData
 
-      let filterByName = new RegExp(state.liveSearch, 'i')
+      let filterByName = new RegExp(state.nameFilter, 'i')
       gnomeDataFilterByName = gnomeDataFilterByName.filter((profile) => {
         return profile.name.match(filterByName)
       })
@@ -134,7 +127,7 @@ export default new Vuex.Store({
       let gnomeDataFilterByAge = getters.getGnomeData
       
       gnomeDataFilterByAge = gnomeDataFilterByAge.filter((profile) => {
-        return profile.age >= state.ageRange[0] && profile.age <= state.ageRange[1]
+        return profile.age >= state.ageFilter[0] && profile.age <= state.ageFilter[1]
       })
       
       return gnomeDataFilterByAge
@@ -150,8 +143,8 @@ export default new Vuex.Store({
       return state.gnomeData.filter((friend) => friends.includes(friend.name))
     },
 
-    getAgeRange: state => {
-      return state.ageRange
+    getAgeFilter: state => {
+      return state.ageFilter
     }
   },
 
