@@ -11,11 +11,11 @@ export default new Vuex.Store({
     ageSpectrum: [],
 
     currentProfile: null,
+
+    liveSearch: '',
     ageRange: [],
 
     gnomesToShow: 16,
-
-    liveSearch: ''
   },
 
   mutations: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     },
 
     COPE_AGE_RANGE(state, { i, payload }) {
-      state.ageRange[i] = payload
+      state.ageRange[i] = payload      
     },
 
     LOAD_MORE(state) {
@@ -86,6 +86,23 @@ export default new Vuex.Store({
       commit('REMOVE_CURRENT_PROFILE')
     },
 
+    copeAgeRange({commit, state},i) {
+      if(parseInt(state.ageRange[0]) > parseInt(state.ageRange[1])) {
+        // state.ageRange[i] = payload
+        commit("COPE_AGE_RANGE", {
+          i: i,
+          payload: i === 0 ? state.ageRange[1] : state.ageRange[0],
+        });
+      }
+
+      // if (parseInt(this.getAgeRange[0]) > parseInt(this.getAgeRange[1])) {
+      //   commit("COPE_AGE_RANGE", {
+      //     i: i,
+      //     payload: i === 0 ? this.getAgeRange[1] : this.getAgeRange[0],
+      //   });
+      // }
+    },
+
     loadMore({ commit }) {
       commit("LOAD_MORE")
     }
@@ -96,20 +113,39 @@ export default new Vuex.Store({
       return state.gnomeData
     },
 
-    getGnomeDataFilterByName: (state, getters) => {
-      let gnomeDataFilteredByName = getters.getGnomeData
+    // getGnomeDataLength: (state, getters) => {
+    //   return getters.getGnomeData.length
+    // },
 
+    getGnomeDataFilterByName: (state, getters) => {
+      let gnomeDataFilterByName = getters.getGnomeData
 
       let filterByName = new RegExp(state.liveSearch, 'i')
-      gnomeDataFilteredByName = gnomeDataFilteredByName.filter((profile) => {
+      gnomeDataFilterByName = gnomeDataFilterByName.filter((profile) => {
         return profile.name.match(filterByName)
       })
 
-      gnomeDataFilteredByName = gnomeDataFilteredByName.slice(0, state.gnomesToShow)
+      gnomeDataFilterByName = gnomeDataFilterByName.slice(0, state.gnomesToShow)
 
-      return gnomeDataFilteredByName
+      return gnomeDataFilterByName
     },
 
+    getGnomeDataFilterByAge: (state, getters) => {
+      let gnomeDataFilterByAge = getters.getGnomeData
+      
+      gnomeDataFilterByAge = gnomeDataFilterByAge.filter((profile) => {
+        return profile.age >= state.ageRange[0] && profile.age <= state.ageRange[1]
+      })
+      
+      return gnomeDataFilterByAge
+    },
+
+    getGnomeDataFilterByAgeSliced: (state, getters) => {
+      let gnomeDataFilterByAgeSliced = getters.getGnomeDataFilterByAge
+      gnomeDataFilterByAgeSliced = gnomeDataFilterByAgeSliced.slice(0, state.gnomesToShow)
+      return gnomeDataFilterByAgeSliced
+    },
+    
     getFriends: (state) => (friends) => {
       return state.gnomeData.filter((friend) => friends.includes(friend.name))
     },
