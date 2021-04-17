@@ -3,21 +3,20 @@
   label.form-label Age
   .age-range-wrapper.position-relative
     input.age-range.form-range.position-absolute(
-      v-for="(age, i) in getAgeRange",
+      v-for="(age, i) in ageRange",
       type="range",
       :min="ageSpectrum[0]",
       :max="ageSpectrum[1]",
-      v-model="getAgeRange[i]",
+      v-model="ageRange[i]",
       @input="copeAgeRange(i)"
     )
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["ageSpectrum"]),
-    ...mapGetters(["getAgeRange"]),
+    ...mapState(["ageSpectrum", "ageRange"]),
   },
 
   methods: {

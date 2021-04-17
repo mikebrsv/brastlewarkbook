@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 import ProfileInfo from "@/components/ProfileInfo.vue";
 import FriendList from "@/components/FriendList.vue";
@@ -22,7 +22,6 @@ export default {
 
   computed: {
     ...mapState(["currentProfile"]),
-    ...mapGetters(["getProfileById"]),
   },
 
   mounted() {

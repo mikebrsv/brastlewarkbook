@@ -1,19 +1,19 @@
 <template lang="pug">
 .main-filters-age-inputs
   .row.gx-2
-    .col-6(v-for="(age, i) in getAgeRange")
+    .col-6(v-for="(age, i) in ageRange")
       input.form-control.text-center(
         type="text",
-        v-model="getAgeRange[i]",
+        v-model="ageRange[i]",
         @input="validateAgeInput($event, i)"
       )
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["getAgeRange"]),
+    ...mapState(["ageRange"]),
   },
 
   methods: {
