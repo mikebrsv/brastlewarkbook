@@ -13,7 +13,9 @@ export default new Vuex.Store({
     currentProfile: null,
     ageRange: [],
 
-    gnomesToShow: 16
+    gnomesToShow: 16,
+
+    liveSearch: ''
   },
 
   mutations: {
@@ -47,7 +49,11 @@ export default new Vuex.Store({
     },
 
     LOAD_MORE(state) {
-      state.gnomesToShow += 16;
+      state.gnomesToShow += 16
+    },
+
+    UPDATE_LIVE_SEARCH(state, data) {
+      state.liveSearch = data
     }
   },
 
@@ -87,8 +93,21 @@ export default new Vuex.Store({
 
   getters: {
     getGnomeData: state => {
-      return state.gnomeData.slice(0, state.gnomesToShow)
-      // return state.gnomeData
+      return state.gnomeData
+    },
+
+    getGnomeDataFilterByName: (state, getters) => {
+      let gnomeDataFilteredByName = getters.getGnomeData
+
+
+      let filterByName = new RegExp(state.liveSearch, 'i')
+      gnomeDataFilteredByName = gnomeDataFilteredByName.filter((profile) => {
+        return profile.name.match(filterByName)
+      })
+
+      gnomeDataFilteredByName = gnomeDataFilteredByName.slice(0, state.gnomesToShow)
+
+      return gnomeDataFilteredByName
     },
 
     getFriends: (state) => (friends) => {

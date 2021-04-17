@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-left(:class="`${currentProfile ? 'col-lg-4 col-md-5' : 'col-12'}`")
+.main-left.order-2.order-md-1(:class="`${currentProfile ? 'col-lg-4 col-md-5' : 'col-12'}`")
   .row.justify-content-center.mb-4
     .main-filters(
       :class="`${currentProfile ? 'col-12' : 'col-lg-10 col-xl-8'}`"
@@ -8,7 +8,7 @@
         .card-body
           .row
             .main-filters-name(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
-              input.form-control(type="text", placeholder="Search by name...")
+              input.form-control(type="text", placeholder="Search by name..." v-model="filterByName")
 
             .main-filters-age-range(:class="`${currentProfile ? 'col-12' : 'col-md-6'}`")
               label.form-label Age
@@ -41,7 +41,7 @@
 
   .gnome-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
     gnome-list(
-      :gnome-data="getGnomeData",
+      :gnome-data="getGnomeDataFilterByName",
       :class="`${currentProfile ? 'mx-0' : ''}`"
     )
 </template>
@@ -65,7 +65,16 @@ export default {
 
   computed: {
     ...mapState(["professions", "ageSpectrum", "currentProfile"]),
-    ...mapGetters(["getGnomeData", "getAgeRange"]),
+    ...mapGetters(["getAgeRange", "getGnomeDataFilterByName"]),
+
+    filterByName: {
+    get () {
+      return this.$store.state.liveSearch
+    },
+    set (value) {
+      this.$store.commit('UPDATE_LIVE_SEARCH', value)
+    }
+  }
   },
 
   methods: {
@@ -135,6 +144,10 @@ export default {
     cursor: pointer
     -webkit-appearance: none
     margin-top: -7px
+    transition: background-color .15s
+
+    &:hover
+      background-color: #0b5ed7
 
 .gnome-list-wrapper
   margin-top: -6px

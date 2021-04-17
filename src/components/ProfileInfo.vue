@@ -1,5 +1,5 @@
 <template lang="pug">
-.card
+.card(:class="mode === 1 ? 'h-100' : ''")
   .card-body(:class="mode === 1 ? 'd-flex flex-column' : ''")
     h4(v-if="mode === 1 && currentProfile") {{ profile.name }}
 

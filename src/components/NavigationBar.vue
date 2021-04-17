@@ -32,6 +32,10 @@ export default {
   font-size: 16px
   padding-top: 8px
   padding-bottom: 8px
+  transition: opacity .15s
+
+  &:hover
+    opacity: .6
 
 .close
   position: absolute

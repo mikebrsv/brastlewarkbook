@@ -104,4 +104,8 @@ body
 .main-left,
 .main-right
   transition: width .15s
+
+@media (max-width: 991.98px)
+  .container
+    max-width: none
 </style>
