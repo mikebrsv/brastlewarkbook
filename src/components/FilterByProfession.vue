@@ -4,13 +4,14 @@
     v-model="selected",
     :multiple="true",
     :options="professions",
-    placeholder="Profession"
+    placeholder="Profession",
+    @input="updateProfessionFilter"
   )
 </template>
 
 <script>
 import Multiselect from "vue-multiselect";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
@@ -24,7 +25,11 @@ export default {
   },
 
   computed: {
-    ...mapState(["professions"]),
+    ...mapState(["professions", "professionFilter"]),
+  },
+
+  methods: {
+    ...mapActions(["updateProfessionFilter"]),
   },
 };
 </script>

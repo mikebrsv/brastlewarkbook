@@ -1,10 +1,13 @@
 <template lang="pug">
 .row.gnome-list-wrapper(:class="`${currentProfile ? 'scrollable' : ''}`")
   gnome-list-item(
-    v-for="gnomeProfile in getGnomeDataFilterByAgeSliced",
+    v-for="gnomeProfile in getGnomeDataFilteredSliced",
     :key="gnomeProfile.id",
     :gnome-profile="gnomeProfile"
   )
+  .col-12.text-center(v-if="getGnomeDataFilteredSliced.length === 0")
+    .fs-4 No gnomes found
+    div Maybe try another village?..
   .col-12.mt-3.mb-5.d-grid
     button.btn.btn-lg.btn-block.btn-primary(@click="loadMore") Load More
 </template>
@@ -21,7 +24,7 @@ export default {
 
   computed: {
     ...mapState(["currentProfile"]),
-    ...mapGetters(["getGnomeDataFilterByAgeSliced"]),
+    ...mapGetters(["getGnomeDataFilteredSliced"]),
   },
 
   methods: {

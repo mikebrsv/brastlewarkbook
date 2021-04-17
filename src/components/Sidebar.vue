@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapState } from "vuex";
 import FilterAll from "@/components/FilterAll.vue";
 import GnomeList from "@/components/GnomeList.vue";
 
@@ -19,7 +19,6 @@ export default {
 
   computed: {
     ...mapState(["currentProfile"]),
-    ...mapGetters(["getGnomeDataFilterByAgeSliced"]),
   },
 };
 </script>

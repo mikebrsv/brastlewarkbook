@@ -25,6 +25,10 @@ export default new Vuex.Store({
     },
 
     SET_PROFESSIONS(state, data) {
+      data.forEach(function (profession, index) {
+        this[index] = profession.trim();
+      }, data);
+      data.sort()
       state.professions = data
     },
 
@@ -41,21 +45,25 @@ export default new Vuex.Store({
       state.currentProfile = null
     },
 
+    UPDATE_NAME_FILTER(state, data) {
+      state.nameFilter = data
+    },
+
+    UPDATE_PROFESSION_FILTER(state, data) {
+      state.professionFilter = data
+    },
+
     SET_AGE_FILTER(state, data) {
       state.ageFilter = data
     },
 
     COPE_AGE_FILTER(state, { i, payload }) {
-      state.ageFilter[i] = payload      
+      state.ageFilter[i] = payload
     },
 
     LOAD_MORE(state) {
       state.gnomesToShow += 16
     },
-
-    UPDATE_NAME_FILTER(state, data) {
-      state.nameFilter = data
-    }
   },
 
   actions: {
@@ -87,17 +95,21 @@ export default new Vuex.Store({
       commit('REMOVE_CURRENT_PROFILE')
     },
 
-    copeAgeFilter({commit, state},i) {
-      if(parseInt(state.ageFilter[0]) > parseInt(state.ageFilter[1])) {
-        commit("COPE_AGE_FILTER", {
+    copeAgeFilter({ commit, state }, i) {
+      if (parseInt(state.ageFilter[0]) > parseInt(state.ageFilter[1])) {
+        commit('COPE_AGE_FILTER', {
           i: i,
           payload: i === 0 ? state.ageFilter[1] : state.ageFilter[0],
         });
       }
     },
 
+    updateProfessionFilter({ commit }, data) {
+      commit('UPDATE_PROFESSION_FILTER', data)
+    },
+
     loadMore({ commit }) {
-      commit("LOAD_MORE")
+      commit('LOAD_MORE')
     }
   },
 
@@ -106,46 +118,28 @@ export default new Vuex.Store({
       return state.gnomeData
     },
 
-    // getGnomeDataLength: (state, getters) => {
-    //   return getters.getGnomeData.length
-    // },
-
-    getGnomeDataFilterByName: (state, getters) => {
-      let gnomeDataFilterByName = getters.getGnomeData
-
+    getGnomeDataFiltered(state, getters) {
+      let gnomeDataFiltered = getters.getGnomeData
       let filterByName = new RegExp(state.nameFilter, 'i')
-      gnomeDataFilterByName = gnomeDataFilterByName.filter((profile) => {
-        return profile.name.match(filterByName)
+
+      gnomeDataFiltered = gnomeDataFiltered.filter((profile) => {
+        return profile.name.match(filterByName) &&
+          (profile.age >= state.ageFilter[0] && profile.age <= state.ageFilter[1]) &&
+          (state.professionFilter.length !== 0
+            ? profile.professions.some(r => state.professionFilter.includes(r.trim()))
+            : profile)
       })
 
-      gnomeDataFilterByName = gnomeDataFilterByName.slice(0, state.gnomesToShow)
-
-      return gnomeDataFilterByName
+      return gnomeDataFiltered
     },
 
-    getGnomeDataFilterByAge: (state, getters) => {
-      let gnomeDataFilterByAge = getters.getGnomeData
-      
-      gnomeDataFilterByAge = gnomeDataFilterByAge.filter((profile) => {
-        return profile.age >= state.ageFilter[0] && profile.age <= state.ageFilter[1]
-      })
-      
-      return gnomeDataFilterByAge
+    getGnomeDataFilteredSliced(state, getters) {
+      return getters.getGnomeDataFiltered.slice(0, state.gnomesToShow)
     },
 
-    getGnomeDataFilterByAgeSliced: (state, getters) => {
-      let gnomeDataFilterByAgeSliced = getters.getGnomeDataFilterByAge
-      gnomeDataFilterByAgeSliced = gnomeDataFilterByAgeSliced.slice(0, state.gnomesToShow)
-      return gnomeDataFilterByAgeSliced
-    },
-    
     getFriends: (state) => (friends) => {
       return state.gnomeData.filter((friend) => friends.includes(friend.name))
     },
-
-    getAgeFilter: state => {
-      return state.ageFilter
-    }
   },
 
   modules: {

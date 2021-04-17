@@ -12,7 +12,7 @@ export default {
   computed: {
     filterByName: {
       get() {
-        return this.$store.state.liveSearch;
+        return this.$store.state.nameFilter;
       },
       set(value) {
         this.$store.commit("UPDATE_NAME_FILTER", value);
