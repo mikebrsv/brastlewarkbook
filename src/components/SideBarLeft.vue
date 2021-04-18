@@ -1,6 +1,6 @@
 <template lang="pug">
 .main-left(
-  :class="`${currentProfile ? 'col-lg-3 col-md-5 order-1' : 'col-12 order-2'}`"
+  :class="`${currentProfile ? 'col-xl-3 col-md-4 order-1' : 'col-12 order-2'}`"
 )
   .row(v-if="currentProfile")
     .col-12

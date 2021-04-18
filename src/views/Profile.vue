@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-center.col-lg-6.col-md-7.order-1.order-md-2(v-if="currentProfile")
+.main-center.col-xl-6.col-md-8.order-1.order-md-2(v-if="currentProfile")
   profile-info(:profile="currentProfile", :mode="0")
   friend-list(:name="currentProfile.name", :friends="currentProfile.friends")
 </template>
@@ -35,4 +35,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@media (max-width: 767.98px)
+  .main-center
+    position: fixed
+    top: 48px
+    left: 0
+    width: 100%
+    height: calc(100vh - 48px)
+
+    .card
+      height: 100%
 </style>

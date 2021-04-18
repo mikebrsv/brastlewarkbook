@@ -47,4 +47,8 @@ export default {
 <style lang="sass" scoped>
 .main-filters
   transition: width .15s
+
+@media (max-width: 1199.98px)
+  .card
+    height: 100%
 </style>
