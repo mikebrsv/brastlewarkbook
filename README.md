@@ -22,7 +22,9 @@ Vue-powered single page application which allows to easily browse through the Br
 
 On app load: the `App.vue` root component sends an initial http request by calling the `setInitialData()` Vuex action in the `created()` lifecycle method.
 
-`setInitialData()` populates the initial app state: `gnomeData` (not mutated during the app lifecycle), `professions` (not mutated during the app lifecycle, used for filtering by professions), `ageSpectrum` (not mutated during the app lifecycle, used for filtering by age range) and `currentProfile` (mutated during the app lifecycle, used for outputting the profile's details) if the url `https://mikebrsv.github.io/brastlewarkbook/profile/${id}` was accessed.
+`setInitialData()` populates the initial app state: `gnomeData` (not mutated during the app lifecycle), `professions` (not mutated during the app lifecycle, used for filtering by professions), `ageSpectrum` (not mutated during the app lifecycle, used for filtering by age range) and `currentProfile` (mutated during the app lifecycle, used for outputting the profile's details) if the url `https://mikebrsv.github.io/brastlewarkbook/profile/${id}` was accessed. `sortOptions` property (not mutated) contains the parameters by which the `gnomeData` array can be sorted and is already pre-populated.
+
+Vuex properties `nameFilter`, `ageFilter`, `professionFilter` and `sort` are used as parameters for filtering/sorting the `gnomeGata` property. The sorting/filtering logic is located in the `getGnomeDataFiltered` getter; slicing the array of the profiles is done in the `getGnomeDataFilteredSliced` getter to which the `gnomesToShow` property is passed. `gnomesToShow` (default value 16) mutation is called by pressing the "Load More" button in the app interface.
 
 ## Interface
 
@@ -36,7 +38,7 @@ On app load: the `App.vue` root component sends an initial http request by calli
 * **Profession**: multiple select to filter the data by profession.
 * **Age**: range and inputs to filter the data by age.
 * **Sort**: sort the data alphabetically (A-Z and Z-A) or by age (Youngest-Oldest and Oldest-Youngest).
-* **Found**: indicates the number of the entries found by filter and sort parameters as well as the total number of the entries in the database.
+* **Found**: indicates the number of the entries found by filter and sort parameters as well as the total number of the entries in the database *(.json file in this case)*.
 
 ### Homepage: Main block
 
@@ -44,7 +46,7 @@ Outputs a list of the gnome profile teasers. Click on a profile teaser will expa
 
 ### Homepage: Load More
 
-By default on the first load the application outputs 16 entries from the database. Press "Load More" to load 16 more.
+By default on the first load the application outputs 16 entries from the database *(.json file in this case)*. Press "Load More" to load 16 more.
 
 ### Profile Page
 
