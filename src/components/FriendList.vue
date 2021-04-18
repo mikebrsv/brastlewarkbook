@@ -10,7 +10,7 @@
         :key="friend.id"
       )
 
-    div(v-if="getFriends(friends).length === 0") {{ name }} hasn't added any friends 
+    .mt-2(v-if="getFriends(friends).length === 0") {{ name }} hasn't added any friends 
       span.fw-bold yet
       | ...
 </template>
