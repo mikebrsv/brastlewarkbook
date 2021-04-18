@@ -27,8 +27,7 @@ export default {
 
 <style lang="sass" scoped>
 .friends-item
-  padding-left: 10px
-  padding-right: 10px
+  padding: 10px
   width: 110px
   font-size: 14px
   line-height: 18px

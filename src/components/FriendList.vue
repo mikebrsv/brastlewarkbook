@@ -3,7 +3,7 @@
   .card-body
     h3.friends-list-title {{ name }}'s Friends
 
-    .friends-list.d-flex.flex-wrap
+    .friends-list.d-flex.flex-wrap.justify-content-md-start.justify-content-center
       friend-list-item(
         v-for="friend in getFriends(friends)",
         :friend="friend",
@@ -46,8 +46,7 @@ export default {
   margin-bottom: 15px
 
 .friends-list
-  margin-left: -10px
-  margin-right: -10px
+  margin: -10px
 
 @media (max-width: 767.98px)
   .card
