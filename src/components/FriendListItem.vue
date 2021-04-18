@@ -32,6 +32,10 @@ export default {
   font-size: 14px
   line-height: 18px
   cursor: pointer
+  transition: color .15s
+
+  &:hover
+    color: #0d6efd
 
 .friend-image
   object-fit: cover
