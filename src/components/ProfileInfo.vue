@@ -1,21 +1,22 @@
 <template lang="pug">
-.card(:class="mode === 1 ? 'h-100' : ''")
+.card(:class="mode === 1 ? 'h-100' : 'border-bottom-md-none'")
   .card-body(:class="mode === 1 ? 'd-flex flex-column' : ''")
-    h4.d-block.d-sm-none(v-if="mode === 1") {{ profile.name }}
+    h4.d-block.d-sm-none(v-if="mode === 1 && !currentProfile") {{ profile.name }}
+    h5(v-else-if="mode === 1 && currentProfile") {{ profile.name }}
 
     .d-flex(:class="mode === 0 ? 'flex-column flex-lg-row' : ''")
       div(:class="mode === 0 ? 'text-center text-lg-start mb-3 mb-lg-0' : ''")
         img.profile-image.rounded-circle(
           :src="profile.thumbnail",
           :alt="profile.name",
-          :class="mode === 1 && (currentProfile ? 'thumbnail smaller' : 'thumbnail')"
+          :class="mode === 1 ? (currentProfile ? 'thumbnail smaller' : 'thumbnail') : 'profile-image-main'"
         )
 
-      .ps-3.d-flex.flex-column.justify-content-between.flex-grow-1
+      .d-flex.flex-column.justify-content-between.flex-grow-1(:class="mode === 0 ? 'ps-lg-3' : 'ps-3'")
         div
-          h1(v-if="mode === 0") {{ profile.name }}
-          h4.mb-0.d-none.d-sm-block(v-if="mode === 1") {{ profile.name }}
-          .mb-3(v-if="mode === 1") {{ profile.professions.join(', ') }}
+          h1(v-if="mode === 0").text-lg-start.text-center {{ profile.name }}
+          h4.mb-0.d-none.d-sm-block(v-if="mode === 1 && !currentProfile") {{ profile.name }}
+          .professions.mb-3(v-if="mode === 1") {{ profile.professions.join(', ') }}
           .mb-3(v-if="mode === 0")
             template(v-for="(profession, index) in profile.professions")
               span.profession(
@@ -125,9 +126,26 @@ export default {
 .show-help
   cursor: help
 
-@media (min-width: 768.98px)
+@media (min-width: 768px)
   .profile-image
     &.smaller
       height: 100px
       width: 100px
+
+@media (max-width: 767.98px)
+  .border-bottom-md-none
+    border-bottom-color: #fff
+
+@media (max-width: 575.98px)
+  .profile-image
+    &.thumbnail
+      height: 90px
+      width: 90px
+
+  .profile-image-main
+    width: 200px
+    height: 200px
+
+  .professions
+    font-size: 14px
 </style>

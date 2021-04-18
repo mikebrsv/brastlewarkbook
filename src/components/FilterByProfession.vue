@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import Multiselect from "vue-multiselect";
 import { mapState } from "vuex";
+
+import Multiselect from "vue-multiselect";
 
 export default {
   components: {

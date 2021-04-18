@@ -48,4 +48,11 @@ export default {
 .friends-list
   margin-left: -10px
   margin-right: -10px
+
+@media (max-width: 767.98px)
+  .card
+    border-top-color: #fff
+
+  .friends-list-title
+    font-size: 20px  
 </style>

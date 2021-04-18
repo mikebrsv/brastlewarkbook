@@ -41,8 +41,6 @@ export default {
   margin-top: -6px
 
   &.scrollable
-    // height: calc(100vh - 144px)
-    // overflow-y: auto
     margin-top: 0px
     margin-bottom: 0px
     --bs-gutter-x: 0

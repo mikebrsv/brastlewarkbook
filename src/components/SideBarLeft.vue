@@ -12,13 +12,14 @@
 
 <script>
 import { mapState } from "vuex";
+
 import FilterByName from "@/components/FilterByName.vue";
 import GnomeList from "@/components/GnomeList.vue";
 
 export default {
   components: {
     GnomeList,
-    FilterByName
+    FilterByName,
   },
 
   computed: {

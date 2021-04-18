@@ -7,18 +7,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import SideBarLeft from "@/components/SideBarLeft.vue";
 import SideBarRight from "@/components/SideBarRight.vue";
-import { mapState } from 'vuex';
 
 export default {
   components: {
     SideBarLeft,
-    SideBarRight
+    SideBarRight,
   },
 
   computed: {
-    ...mapState(["currentProfile"])
-  }
+    ...mapState(["currentProfile"]),
+  },
 };
 </script>

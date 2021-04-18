@@ -9,6 +9,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   computed: {
     ...mapGetters(["getGnomeDataFilterByAge", "getGnomeDataFilterByProfession", "getGnomeDataFiltered", "getGnomeData"]),

@@ -43,7 +43,7 @@ export default {
     width: 100%
     height: calc(100vh - 48px)
     z-index: 9
-
-    .card
-      height: 100%
+    background-color: #edeef0
+    padding-top: 12px
+    padding-bottom: 12px
 </style>

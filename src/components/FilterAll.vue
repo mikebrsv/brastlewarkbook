@@ -4,7 +4,7 @@
     .card
       .card-body
         .row
-          filter-by-name(v-if="!currentProfile" :class="filterClass")
+          filter-by-name(v-if="!currentProfile", :class="filterClass")
           filter-by-age-range(:class="filterClass")
           filter-by-profession(:class="filterClass")
           filter-by-age-inputs.main-filters-age-inputs(:class="filterClass")
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 import FilterByName from "@/components/FilterByName.vue";
 import FilterByAgeRange from "@/components/FilterByAgeRange.vue";
@@ -40,7 +40,7 @@ export default {
     filterClass() {
       return this.currentProfile ? "col-12" : "col-md-6";
     },
-  }
+  },
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-div(
+.gnome-list-item(
   @click="setCurrentProfileHandler(gnomeProfile)",
   :class="`${currentProfile ? 'col-12' : 'col-lg-6'}`"
 )
@@ -40,8 +40,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.card
-  cursor: pointer
+.gnome-list-item
+  .card
+    transition: background-color .15s, box-shadow .15s
+    cursor: pointer
+
+    &:hover
+      background-color: #f9f9f9
+      box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1)
 
 .col-lg-6,
 .col-12
@@ -49,9 +55,6 @@ export default {
   padding-bottom: 6px
 
 .col-12
-  // padding-left: 0
-  // padding-right: 0
-
   &:nth-child(1)
     padding-top: 0
 

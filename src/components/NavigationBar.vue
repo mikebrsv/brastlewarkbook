@@ -7,6 +7,7 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
 
 <script>
 import { mapActions, mapState } from "vuex";
+
 export default {
   computed: {
     ...mapState(["currentProfile"]),
