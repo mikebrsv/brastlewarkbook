@@ -7,14 +7,16 @@
     .d-flex(:class="mode === 0 ? 'flex-column flex-lg-row' : ''")
       div(:class="mode === 0 ? 'text-center text-lg-start mb-3 mb-lg-0' : ''")
         img.profile-image.rounded-circle(
-          :src="profile.thumbnail",
+          :src="forceHttps(profile.thumbnail)",
           :alt="profile.name",
           :class="mode === 1 ? (currentProfile ? 'thumbnail smaller' : 'thumbnail') : 'profile-image-main'"
         )
 
-      .d-flex.flex-column.justify-content-between.flex-grow-1(:class="mode === 0 ? 'ps-lg-3' : 'ps-3'")
+      .d-flex.flex-column.justify-content-between.flex-grow-1(
+        :class="mode === 0 ? 'ps-lg-3' : 'ps-3'"
+      )
         div
-          h1(v-if="mode === 0").text-lg-start.text-center {{ profile.name }}
+          h1.text-lg-start.text-center(v-if="mode === 0") {{ profile.name }}
           h4.mb-0.d-none.d-sm-block(v-if="mode === 1 && !currentProfile") {{ profile.name }}
           .professions.mb-3(v-if="mode === 1") {{ profile.professions.join(', ') }}
           .mb-3(v-if="mode === 0")
@@ -90,6 +92,10 @@ export default {
       } else {
         return "";
       }
+    },
+
+    forceHttps(url) {
+      return url.replace("http", "https");
     },
   },
 };
