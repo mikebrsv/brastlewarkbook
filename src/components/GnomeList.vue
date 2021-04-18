@@ -41,8 +41,8 @@ export default {
   margin-top: -6px
 
   &.scrollable
-    height: calc(100vh - 144px)
-    overflow-y: auto
+    // height: calc(100vh - 144px)
+    // overflow-y: auto
     margin-top: 0px
     margin-bottom: 0px
     --bs-gutter-x: 0
@@ -58,4 +58,10 @@ export default {
 
       &:hover
         background-color: #555
+
+@media (min-width: 768px)
+  .gnome-list-wrapper
+    &.scrollable
+      height: calc(100vh - 144px)
+      overflow-y: auto
 </style>

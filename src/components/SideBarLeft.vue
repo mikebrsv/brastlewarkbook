@@ -2,7 +2,7 @@
 .main-left(
   :class="`${currentProfile ? 'col-xl-3 col-md-4 order-1' : 'col-12 order-2'}`"
 )
-  .row(v-if="currentProfile")
+  .row.d-none.d-md-block(v-if="currentProfile")
     .col-12
       .card
         .card-body

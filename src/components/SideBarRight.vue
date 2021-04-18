@@ -1,6 +1,6 @@
 <template lang="pug">
 .main-right(
-  :class="`${currentProfile ? 'col-lg-3 col-md-5 order-3 slidable' : 'col-12 order-1'} ${showSidebar ? 'active' : ''}`"
+  :class="`${currentProfile ? 'col-lg-3 col-md-5 order-md-3 slidable' : 'col-12 order-1'} ${showSidebar ? 'active' : ''}`"
 )
   .filters-button.d-xl-none.d-md-flex.d-none.align-items-center.justify-content-center(
     @click="toggleSidebar"
