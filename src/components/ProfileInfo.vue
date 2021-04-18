@@ -7,7 +7,7 @@
     .d-flex(:class="mode === 0 ? 'flex-column flex-lg-row' : ''")
       div(:class="mode === 0 ? 'text-center text-lg-start mb-3 mb-lg-0' : ''")
         img.profile-image.rounded-circle(
-          :src="forceHttps(profile.thumbnail)",
+          :src="profile.thumbnail.replace('http://', 'https://')",
           :alt="profile.name",
           :class="mode === 1 ? (currentProfile ? 'thumbnail smaller' : 'thumbnail') : 'profile-image-main'"
         )
@@ -92,10 +92,6 @@ export default {
       } else {
         return "";
       }
-    },
-
-    forceHttps(url) {
-      return url.replace("http", "https");
     },
   },
 };

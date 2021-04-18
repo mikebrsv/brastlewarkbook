@@ -2,7 +2,7 @@
 .friends-item.d-flex.flex-column.align-items-center(
   @click="friendsItemClickHandler(friend.id)"
 )
-  img.friend-image.rounded-circle(:src="friend.thumbnail", :alt="friend.name")
+  img.friend-image.rounded-circle(:src="friend.thumbnail.replace('http://', 'https://')", :alt="friend.name")
   .friend-name.text-center {{ friend.name }}
 </template>
 
