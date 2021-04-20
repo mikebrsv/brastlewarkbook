@@ -8,5 +8,6 @@ module.exports = {
       })
   },
 
-  publicPath: process.env.NODE_ENV === 'production' ? '/brastlewarkbook/' : '/'
+  // publicPath: process.env.NODE_ENV === 'production' ? '/brastlewarkbook/' : '/'
+  publicPath: '/brastlewarkbook/'
 }
