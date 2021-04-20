@@ -1,24 +1,16 @@
 <template lang="pug">
 nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
   .container.position-relative
-    a.navbar-brand(:href="root") Brastlewarkbook
+    a.navbar-brand(href="/") Brastlewarkbook
     .close(v-if="currentProfile", @click="removeCurrentProfileHandler") 
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 
-import publicPath from "../../vue.config";
-
 export default {
   computed: {
     ...mapState(["currentProfile"]),
-  },
-
-  data() {
-    return {
-      root: publicPath.publicPath,
-    };
   },
 
   methods: {
