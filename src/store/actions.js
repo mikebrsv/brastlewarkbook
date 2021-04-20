@@ -21,12 +21,12 @@ const setInitialData = async ({ commit }) => {
 }
 
 const setCurrentProfileById = ({ commit }, id) => {
-  document.querySelector('body').classList.add('overflow-hidden')
+  document.querySelector('body').classList.add('profile-active')
   commit('SET_CURRENT_PROFILE_BY_ID', id)
 }
 
 const removeCurrentProfile = ({ commit }) => {
-  document.querySelector('body').classList.remove('overflow-hidden')
+  document.querySelector('body').classList.remove('profile-active')
   commit('REMOVE_CURRENT_PROFILE')
 }
 

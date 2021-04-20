@@ -40,6 +40,10 @@ body
   background-color: #edeef0
   overflow-x: hidden
 
+  &.profile-active
+    @media (max-width: 767.98px)
+      overflow: hidden
+
 .container-fluid
   max-width: 3000px
 
