@@ -10,6 +10,8 @@
           :src="profile.thumbnail.replace('http://', 'https://')",
           :alt="profile.name",
           :class="mode === 1 ? (currentProfile ? 'thumbnail smaller' : 'thumbnail') : 'profile-image-main'"
+          width="250"
+          height="250"
         )
 
       .d-flex.flex-column.justify-content-between.flex-grow-1(
